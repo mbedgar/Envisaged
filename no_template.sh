@@ -3,16 +3,16 @@
 # Predefined resolutions and settings.
 if [[ "${VIDEO_RESOLUTION}" == "2160p" ]]; then
 	GOURCE_RES="3840x2160"
-	echo "Using 2160p settings. Output will be 3840x2160 at 60fps."
+	echo "Using 2160p settings. Output will be 3840x2160 at ${GOURCE_FPS}fps."
 elif [[ "${VIDEO_RESOLUTION}" == "1440p" ]]; then
 	GOURCE_RES="2560x1440"
-	echo "Using 1440p settings. Output will be 2560x1440 at 60fps."
+	echo "Using 1440p settings. Output will be 2560x1440 at ${GOURCE_FPS}fps."
 elif [[ "${VIDEO_RESOLUTION}" == "1080p" ]]; then
 	GOURCE_RES="1920x1080"
-	echo "Using 1080p settings. Output will be 1920x1080 at 60fps."
+	echo "Using 1080p settings. Output will be 1920x1080 at ${GOURCE_FPS}fps."
 elif [[ "${VIDEO_RESOLUTION}" == "720p" ]]; then
 	GOURCE_RES="1280x720"
-	echo "Using 720p settings. Output will be 1280x720 at 60fps."
+	echo "Using 720p settings. Output will be 1280x720 at ${GOURCE_FPS}fps."
 fi
 
 if [[ "${INVERT_COLORS}" == "true" ]]; then
