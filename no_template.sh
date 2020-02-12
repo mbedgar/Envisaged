@@ -49,29 +49,29 @@ gource --seconds-per-day ${GOURCE_SECONDS_PER_DAY} \
 	--${GOURCE_RES} \
 	--stop-at-end \
 	./development.log \
-	-r 60 \
+	-r ${GOURCE_FPS} \
 	-o - >./tmp/gource.pipe &
 
 # Start ffmpeg to merge the two video outputs.
 mkdir -p ./video
 if [[ "${LOGO_FILTER_GRAPH}" != "" ]]; then
 	if [[ "${GOURCE_FILTERS}" != "" ]]; then
-		ffmpeg -y -r 60 -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
+		ffmpeg -y -r ${GOURCE_FPS} -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
 			${LOGO} \
 			-filter_complex "[0:v]${GOURCE_FILTERS}[filtered];[filtered]${LOGO_FILTER_GRAPH}${GLOBAL_FILTERS}" ${FILTER_GRAPH_MAP} \
 			-vcodec libx264 -level ${H264_LEVEL} -pix_fmt yuv420p -crf ${H264_CRF} -preset ${H264_PRESET} -bf 0 ./video/output.mp4
 	else
-		ffmpeg -y -r 60 -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
+		ffmpeg -y -r ${GOURCE_FPS} -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
 			${LOGO} \
 			-filter_complex "[0:v]${LOGO_FILTER_GRAPH}${GLOBAL_FILTERS}" ${FILTER_GRAPH_MAP} \
 			-vcodec libx264 -level ${H264_LEVEL} -pix_fmt yuv420p -crf ${H264_CRF} -preset ${H264_PRESET} -bf 0 ./video/output.mp4
 	fi
 elif [[ "${GOURCE_FILTERS}" != "" ]]; then
-	ffmpeg -y -r 60 -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
+	ffmpeg -y -r ${GOURCE_FPS} -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
 		-filter_complex "${GOURCE_FILTERS}${GLOBAL_FILTERS}" ${FILTER_GRAPH_MAP} \
 		-vcodec libx264 -level ${H264_LEVEL} -pix_fmt yuv420p -crf ${H264_CRF} -preset ${H264_PRESET} -bf 0 ./video/output.mp4
 else
-	ffmpeg -y -r 60 -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
+	ffmpeg -y -r ${GOURCE_FPS} -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
 		-vcodec libx264 -level ${H264_LEVEL} -pix_fmt yuv420p -crf ${H264_CRF} -preset ${H264_PRESET} -bf 0 ./video/output.mp4
 fi
 
