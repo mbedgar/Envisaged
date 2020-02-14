@@ -42,6 +42,7 @@ gource --seconds-per-day ${GOURCE_SECONDS_PER_DAY} \
 	--hide ${GOURCE_HIDE_ITEMS} \
 	--font-size ${GOURCE_FONT_SIZE} \
 	--dir-name-depth ${GOURCE_DIR_DEPTH} \
+	--key \
 	--filename-time ${GOURCE_FILENAME_TIME} \
 	--user-image-dir ${GOURCE_USER_IMAGE_DIR} \
 	--max-user-speed ${GOURCE_MAX_USER_SPEED} \
