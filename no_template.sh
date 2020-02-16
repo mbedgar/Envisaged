@@ -34,6 +34,7 @@ echo "Starting Gource for ${GIT_URL}, using title: ${GOURCE_TITLE}"
 gource --seconds-per-day ${GOURCE_SECONDS_PER_DAY} \
 	--user-scale ${GOURCE_USER_SCALE} \
 	--time-scale ${GOURCE_TIME_SCALE} \
+	--key \
 	--auto-skip-seconds ${GOURCE_AUTO_SKIP_SECONDS} \
 	--title "${GOURCE_TITLE}" \
 	--background-colour ${GOURCE_BACKGROUND_COLOR} \
