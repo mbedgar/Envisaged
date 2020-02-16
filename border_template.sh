@@ -113,15 +113,13 @@ ffmpeg -y -r ${GOURCE_FPS} -f image2pipe -probesize 100M -i ./tmp/gource.pipe \
                          [key][center]hstack[with_key];\
                          [date][with_key]vstack[with_date]${LOGO_FILTER_GRAPH}${GLOBAL_FILTERS}" ${FILTER_GRAPH_MAP} \
 
-	-vcodec libx264 -level ${H264_LEVEL} -pix_fmt yuv420p -crf ${H264_CRF} -preset ${H264_PRESET} -bf 0 './video/${GOURCE_TITLE}.mp4'
-
+	-vcodec libx264 -level ${H264_LEVEL} -pix_fmt yuv420p -crf ${H264_CRF} -preset ${H264_PRESET} -bf 0 "./video/${GOURCE_TITLE}.mp4"
 
 # Remove our temporary files.
 echo "Removing temporary files."
 rm -rf ./tmp
 
 # Update html and link new video.
-
-filesize="$(du -sh '/visualization/video/${GOURCE_TITLE}.mp4' | cut -f 1)"
+filesize="$(du -sh "/visualization/video/${GOURCE_TITLE}.mp4" | cut -f 1)"
 printf "$(cat /visualization/html/completed.html)" $filesize >/visualization/html/index.html
-ln -sf '/visualization/video/${GOURCE_TITLE}.mp4' '/visualization/html/${GOURCE_TITLE}.mp4'
+ln -sf "/visualization/video/${GOURCE_TITLE}.mp4" "/visualization/html/${GOURCE_TITLE}.mp4"
